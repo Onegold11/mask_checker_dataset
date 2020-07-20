@@ -9,7 +9,8 @@ def make_image_directory(name):
 
 def get_face():
     #make_image_directory("mask_converted")
-    detect_faces("../new_image/")
+    #detect_faces("../new_image/")
+    detect_faces("../images/mask/")
 
 
 def detect_faces(dir_path):
