@@ -1,11 +1,12 @@
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
 from keras.callbacks import EarlyStopping, ModelCheckpoint
+from keras.applications.vgg16 import VGG16
 import matplotlib.pyplot as plt
 import numpy as np
 
 DATASET_PATH = './dataset/images.npy'
-MODEL_PATH = './models/cnn/'
+MODEL_PATH = './models/VGG16/'
 
 
 def get_data_set():
@@ -22,27 +23,21 @@ def get_data_set():
 
 
 def create_model(X_train, X_test, Y_train, Y_test):
+    # VGG16 모델 생성
+    transfer_model = VGG16(weights='imagenet', include_top=False, input_shape=(64, 64, 3))
+    transfer_model.trainable = False
+    transfer_model.summary()
+
     # 모델 생성
     model = Sequential()
 
-    # 컨볼루션 1층
-    model.add(Conv2D(32, kernel_size=(3, 3), input_shape=(64, 64, 3), activation='relu'))
-    model.add(MaxPooling2D(pool_size=2))
-    model.add(Dropout(0.25))
-
-    # 컨볼루션 2층
-    model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D(pool_size=2))
-    model.add(Dropout(0.25))
-
-    # 컨볼루션 3층
-    model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D(pool_size=2))
-    model.add(Dropout(0.25))
+    # VGG16 모델 연결
+    model.add(transfer_model)
 
     # 완전 연결 계층
     model.add(Flatten())
     model.add(Dense(64, activation='relu'))
+    model.add(Dropout(0.5))
     model.add(Dense(2, activation='softmax'))
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
@@ -53,7 +48,7 @@ def create_model(X_train, X_test, Y_train, Y_test):
 
     # 조기 멈춤
     early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
-    
+
     # 학습
     history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=10, batch_size=32, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
