@@ -5,7 +5,9 @@ from keras.applications.mobilenet_v2 import MobileNetV2
 import matplotlib.pyplot as plt
 import numpy as np
 
+# 데이터 셋 경로
 DATASET_PATH = './dataset/images.npy'
+# 모델 파일 저장 경로
 MODEL_PATH = './models/MobileNet/'
 
 
@@ -23,7 +25,7 @@ def get_data_set():
 
 
 def create_model(X_train, X_test, Y_train, Y_test):
-    # VGG16 모델 생성
+    # MobileNet 모델 생성
     transfer_model = MobileNetV2(weights='imagenet', include_top=False, input_shape=(64, 64, 3))
     transfer_model.trainable = False
     transfer_model.summary()
@@ -31,7 +33,7 @@ def create_model(X_train, X_test, Y_train, Y_test):
     # 모델 생성
     model = Sequential()
 
-    # VGG16 모델 연결
+    # MobileNet 모델 연결
     model.add(transfer_model)
 
     # 완전 연결 계층

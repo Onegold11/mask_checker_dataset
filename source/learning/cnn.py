@@ -4,7 +4,9 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 import matplotlib.pyplot as plt
 import numpy as np
 
+# 데이터 셋 경로
 DATASET_PATH = './dataset/images.npy'
+# 모델 파일 저장 경로
 MODEL_PATH = './models/cnn/'
 
 
