@@ -14,8 +14,8 @@ def get_data_set():
     X_train, X_test, y_train, y_test = np.load(DATASET_PATH, allow_pickle=True)
 
     # 데이터 정규화(0~1)
-    X_train = X_train.astype("float") / 256
-    X_test = X_test.astype("float") / 256
+    X_train = X_train.astype("float") / 255
+    X_test = X_test.astype("float") / 255
     print('X_train shape:', X_train.shape)
     print('Y_train shape:', y_train.shape)
     print('X_test shape:', X_test.shape)

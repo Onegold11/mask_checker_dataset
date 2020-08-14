@@ -15,8 +15,8 @@ def get_data_set():
     X_train, X_test, y_train, y_test = np.load(DATASET_PATH, allow_pickle=True)
 
     # 데이터 정규화(0~1)
-    X_train = X_train.astype("float") / 256
-    X_test = X_test.astype("float") / 256
+    X_train = X_train.astype("float") / 255
+    X_test = X_test.astype("float") / 255
     print('X_train shape:', X_train.shape)
     print('Y_train shape:', y_train.shape)
     print('X_test shape:', X_test.shape)
@@ -52,9 +52,11 @@ def create_model(X_train, X_test, Y_train, Y_test):
     early_stopping_callback = EarlyStopping(monitor='val_loss', patience=5, mode='auto')
 
     # 학습
-    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=100, batch_size=32, verbose=0,
+    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=1, batch_size=32, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
+    print(X_test.shape)
+    print(Y_test.shape)
 
     # 학습 과정 손실 값 그래프
     y_vloss = history.history['val_loss']
