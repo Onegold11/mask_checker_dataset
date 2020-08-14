@@ -12,3 +12,8 @@ Data Source
 + https://www.kaggle.com/wobotintelligence/face-mask-detection-dataset/data?select=train.csv
 + https://www.kaggle.com/atulanandjha/lfwpeople?select=lfw-funneled.tgz
 + https://public.roboflow.ai/object-detection/mask-wearing
+
+Open Source
+-----------
++ dlib: https://github.com/davisking/dlib
++ opencv-python 4.3.0.36: https://github.com/skvark/opencv-python 
