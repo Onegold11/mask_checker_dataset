@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     X = np.array(x)
     Y = np.array(y)
-    
+
     # 학습 전용 데이터와 테스트 전용 데이터 구분
     print("학습, 테스트 데이터 분류...")
     X_train, X_test, y_train, y_test = train_test_split(X, Y)
@@ -51,5 +51,6 @@ if __name__ == "__main__":
     # 이미지 데이터 셋 저장
     print('데이터 저장중 ...')
     print(xy)
+
     np.save("./dataset/images_v3.npy", xy)
     print("저장 완료")
