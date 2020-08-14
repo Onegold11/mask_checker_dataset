@@ -13,7 +13,16 @@ Data Source
 + https://www.kaggle.com/atulanandjha/lfwpeople?select=lfw-funneled.tgz
 + https://public.roboflow.ai/object-detection/mask-wearing
 
-Open Source
+Using Models
+------------
++ VGG16
++ MobileNetV2
+
+Required Version
 -----------
++ Tensorflow 2.2.0: https://github.com/tensorflow/tensorflow
++ Keras 2.4.3: https://github.com/keras-team/keras
++ scikit-learn 0.23.2: https://github.com/scikit-learn/scikit-learn
++ numpy 1.19.0: https://github.com/numpy/numpy
 + dlib: https://github.com/davisking/dlib
-+ opencv-python 4.3.0.36: https://github.com/skvark/opencv-python 
++ opencv-python 4.3.0.36: https://github.com/skvark/opencv-python
