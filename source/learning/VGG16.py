@@ -49,10 +49,10 @@ def create_model(X_train, X_test, Y_train, Y_test):
     check_pointer = ModelCheckpoint(filepath=model_path, monitor='val_loss', verbose=1, save_best_only=True)
 
     # 조기 멈춤
-    early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
+    early_stopping_callback = EarlyStopping(monitor='val_loss', patience=5, mode='auto')
 
     # 학습
-    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=10, batch_size=32, verbose=0,
+    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=100, batch_size=32, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
 

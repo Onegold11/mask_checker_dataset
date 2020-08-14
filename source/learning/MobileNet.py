@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # 데이터 셋 경로
-DATASET_PATH = './dataset/images.npy'
+DATASET_PATH = './dataset/images_v3.npy'
 # 모델 파일 저장 경로
 MODEL_PATH = './models/MobileNet/'
 
@@ -49,10 +49,10 @@ def create_model(X_train, X_test, Y_train, Y_test):
     check_pointer = ModelCheckpoint(filepath=model_path, monitor='val_loss', verbose=1, save_best_only=True)
 
     # 조기 멈춤
-    early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
+    early_stopping_callback = EarlyStopping(monitor='val_loss', patience=5, mode='auto')
 
     # 학습
-    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=10, batch_size=32, verbose=0,
+    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=100, batch_size=32, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
 
@@ -70,6 +70,8 @@ def create_model(X_train, X_test, Y_train, Y_test):
     plt.ylabel('loss')
     plt.show()
 
+  #  from keras.models import load_model
+ #   model.save('mask_detection_v3.h5')
 
 if __name__ == "__main__":
     X_train, X_test, y_train, y_test = get_data_set()

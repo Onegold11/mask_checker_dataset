@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # 이미지 원본 경로
-SOURCE_PATH = "../../result/v1/"
+SOURCE_PATH = "../../result/v3/"
 # 이미지 타입
 CLASSES = ["mask", "no_mask"]
 # 이미지 크기
@@ -51,5 +51,5 @@ if __name__ == "__main__":
     # 이미지 데이터 셋 저장
     print('데이터 저장중 ...')
     print(xy)
-    np.save("./dataset/images.npy", xy)
+    np.save("./dataset/images_v3.npy", xy)
     print("저장 완료")
