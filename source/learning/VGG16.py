@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from keras.layers import Dense, Dropout, Flatten
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.applications.vgg16 import VGG16
 import matplotlib.pyplot as plt
@@ -9,6 +9,8 @@ import numpy as np
 DATASET_PATH = './dataset/images.npy'
 # 모델 파일 저장 경로
 MODEL_PATH = './models/VGG16/'
+# 모델 이름
+MODEL_NAME = 'mask_detection_v1.h5'
 
 
 def get_data_set():
@@ -54,13 +56,15 @@ def create_model(X_train, X_test, Y_train, Y_test):
     # 학습
     history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=1, batch_size=32, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
-    print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
-    print(X_test.shape)
-    print(Y_test.shape)
 
     # 학습 과정 손실 값 그래프
+    acc = history.history['accuracy']
+    val_acc = history.history['val_accuracy']
     y_vloss = history.history['val_loss']
     y_loss = history.history['loss']
+
+    print("acc_train\n{0}".format(acc))
+    print("acc_test\n{0}".format(val_acc))
 
     x_len = np.arange(len(y_loss))
     plt.plot(x_len, y_vloss, marker='.', c='red', label='Testset_loss')
@@ -71,6 +75,9 @@ def create_model(X_train, X_test, Y_train, Y_test):
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.show()
+
+    # 모델 저장
+    model.save(MODEL_NAME)
 
 
 if __name__ == "__main__":

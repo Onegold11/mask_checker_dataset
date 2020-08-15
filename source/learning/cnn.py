@@ -8,6 +8,8 @@ import numpy as np
 DATASET_PATH = './dataset/images.npy'
 # 모델 파일 저장 경로
 MODEL_PATH = './models/cnn/'
+# 모델 이름
+MODEL_NAME = 'mask_detection_v1.h5'
 
 
 def get_data_set():
@@ -55,18 +57,25 @@ def create_model(X_train, X_test, Y_train, Y_test):
 
     # 조기 멈춤
     early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10)
-    
+
     # 학습
     history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=10, batch_size=32, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
 
     # 학습 과정 손실 값 그래프
+    acc = history.history['accuracy']
+    val_acc = history.history['val_accuracy']
     y_vloss = history.history['val_loss']
     y_loss = history.history['loss']
 
+    print("acc_train\n{0}".format(acc))
+    print("acc_test\n{0}".format(val_acc))
+
     x_len = np.arange(len(y_loss))
-    plt.plot(x_len, y_vloss, marker='.', c='red', label='Testset_loss')
+    plt.plot(x_len, acc, marker='.', c='red', label='Trainset_acc')
+    plt.plot(x_len, val_acc, marker='.', c='lightcoral', label='Testset_acc')
+    plt.plot(x_len, y_vloss, marker='.', c='cornflowerblue', label='Testset_loss')
     plt.plot(x_len, y_loss, marker='.', c='blue', label='Trainset_loss')
 
     plt.legend(loc='upper right')
@@ -74,6 +83,9 @@ def create_model(X_train, X_test, Y_train, Y_test):
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.show()
+
+    # 모델 저장
+    model.save(MODEL_NAME)
 
 
 if __name__ == "__main__":
