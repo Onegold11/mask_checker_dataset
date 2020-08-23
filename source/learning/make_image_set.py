@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # 버전(v1, v2, v3)
-VERSION = "v2"
+VERSION = "v3"
 # 이미지 원본 경로
 SOURCE_PATH = "../../result/" + VERSION + "/"
 # 이미지 타입

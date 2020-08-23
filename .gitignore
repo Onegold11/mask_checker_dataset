@@ -1,2 +1,3 @@
 .idea
-.source/learning/models/*
+*.hdf5
+*.h5
