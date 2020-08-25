@@ -12,7 +12,7 @@ MODEL_PATH = './models/'
 # 모델 최종 파일 저장 경로
 MODEL_FINAL_PATH = './models/'
 # 모델 이름
-MODEL_NAME = 'mask_detection_v3_3.h5'
+MODEL_NAME = 'mask_detection_v3_binary_2.h5'
 
 
 def get_data_set():
@@ -48,7 +48,7 @@ def create_model(X_train, X_test, Y_train, Y_test):
     model.add(Dense(2, activation='softmax'))
 
     model.summary()
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # 모델 중간 세이브
     model_path = MODEL_PATH + '{epoch:02d}-{val_loss:.4f}.hdf5'
