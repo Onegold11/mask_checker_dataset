@@ -44,9 +44,9 @@ def detect_faces(dir_path):
                 resize = cv2.resize(cropped, dsize=(64, 64), interpolation=cv2.INTER_AREA)
             except:
                 continue
-            #cv2.imshow("image view", resize)
+            cv2.imshow("image view", resize)
 
-            cv2.imwrite(result_path + str(imgNum) + '.jpg', resize)
+           # cv2.imwrite(result_path + str(imgNum) + '.jpg', resize)
 
             imgNum += 1
 
