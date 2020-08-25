@@ -8,7 +8,7 @@ VERSION = "v3"
 # 이미지 원본 경로
 SOURCE_PATH = "../../result/" + VERSION + "/"
 # 이미지 타입
-CLASSES = ["mask", "no_mask"]
+CLASSES = ["mask", "no_mask_2"]
 # 이미지 크기
 image_w = 64
 image_h = 64

@@ -2,9 +2,9 @@ import tensorflow as tf
 import keras
 
 # 모델 경로
-MODEL_FINAL_PATH = './models/final/MobileNet/'
+MODEL_FINAL_PATH = './models/'
 # 모델 이름
-MODEL_NAME = 'mask_detection_v3.h5'
+MODEL_NAME = 'mask_detection_v3_3.h5'
 # TFLite 파일 저장 경로
 TFLITE_PATH = './models/TFLite/'
 # TFLite 모델 이름

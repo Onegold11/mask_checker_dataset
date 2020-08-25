@@ -8,11 +8,11 @@ import numpy as np
 # 데이터 셋 경로
 DATASET_PATH = './dataset/images_v3.npy'
 # 모델 중간 파일 저장 경로
-MODEL_PATH = './models/MobileNet/'
+MODEL_PATH = './models/'
 # 모델 최종 파일 저장 경로
-MODEL_FINAL_PATH = './models/final/MobileNet/'
+MODEL_FINAL_PATH = './models/'
 # 모델 이름
-MODEL_NAME = 'mask_detection_v3.h5'
+MODEL_NAME = 'mask_detection_v3_3.h5'
 
 
 def get_data_set():
@@ -48,7 +48,7 @@ def create_model(X_train, X_test, Y_train, Y_test):
     model.add(Dense(2, activation='softmax'))
 
     model.summary()
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['binary_accuracy'])
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # 모델 중간 세이브
     model_path = MODEL_PATH + '{epoch:02d}-{val_loss:.4f}.hdf5'
@@ -63,7 +63,7 @@ def create_model(X_train, X_test, Y_train, Y_test):
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
 
     # 학습 과정 손실 값 그래프
-    acc = history.history['binary_accuracy']
+    acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
     y_vloss = history.history['val_loss']
     y_loss = history.history['loss']
