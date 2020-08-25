@@ -1,15 +1,18 @@
-from keras.optimizers import Adam
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
+from keras.layers import Dense, Dropout, Flatten
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.applications.mobilenet_v2 import MobileNetV2
 import matplotlib.pyplot as plt
 import numpy as np
 
 # 데이터 셋 경로
-DATASET_PATH = './dataset/images.npy'
-# 모델 파일 저장 경로
+DATASET_PATH = './dataset/images_v3.npy'
+# 모델 중간 파일 저장 경로
 MODEL_PATH = './models/MobileNet/'
+# 모델 최종 파일 저장 경로
+MODEL_FINAL_PATH = './models/final/MobileNet/'
+# 모델 이름
+MODEL_NAME = 'mask_detection_v3.h5'
 
 
 def get_data_set():
@@ -52,23 +55,21 @@ def create_model(X_train, X_test, Y_train, Y_test):
     check_pointer = ModelCheckpoint(filepath=model_path, monitor='val_loss', verbose=1, save_best_only=True)
 
     # 조기 멈춤
-    early_stopping_callback = EarlyStopping(monitor='val_loss', patience=3, mode='auto')
+    early_stopping_callback = EarlyStopping(monitor='val_loss', patience=10, mode='auto')
 
     # 학습
-    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=100, batch_size=100, verbose=0,
+    history = model.fit(X_train, Y_train, validation_data=(X_test, Y_test), epochs=20, batch_size=100, verbose=0,
                         callbacks=[early_stopping_callback, check_pointer])
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
-'''
+
     # 학습 과정 손실 값 그래프
     acc = history.history['binary_accuracy']
     val_acc = history.history['val_accuracy']
     y_vloss = history.history['val_loss']
     y_loss = history.history['loss']
 
-    print("acc_train")
-    print(acc)
-    print("acc_test")
-    print(val_acc)
+    print("acc_train\n{0}".format(acc))
+    print("acc_test\n{0}".format(val_acc))
 
     x_len = np.arange(len(y_loss))
     plt.plot(x_len, acc, marker='.', c='red', label='Trainset_acc')
@@ -81,10 +82,10 @@ def create_model(X_train, X_test, Y_train, Y_test):
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.show()
-'''
 
-#  from keras.models import load_model
-#   model.save('mask_detection_v3.h5')
+    # 모델 저장
+    model.save(MODEL_FINAL_PATH + MODEL_NAME)
+
 
 if __name__ == "__main__":
     X_train, X_test, y_train, y_test = get_data_set()

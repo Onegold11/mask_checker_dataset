@@ -3,8 +3,10 @@ from PIL import Image
 import numpy as np
 import os
 
+# 버전(v1, v2, v3)
+VERSION = "v3"
 # 이미지 원본 경로
-SOURCE_PATH = "../../result/v2/"
+SOURCE_PATH = "../../result/" + VERSION + "/"
 # 이미지 타입
 CLASSES = ["mask", "no_mask"]
 # 이미지 크기
@@ -53,5 +55,5 @@ if __name__ == "__main__":
     print('데이터 저장중 ...')
     print(xy)
 
-    np.save("./dataset/images_v2.npy", xy)
+    np.save("./dataset/images_" + VERSION + ".npy", xy)
     print("저장 완료")

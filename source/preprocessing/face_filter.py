@@ -33,7 +33,6 @@ def detect_faces(dir_path):
             # 이미지에서 얼굴 영역만 추출
             cropped = img[y - int(h / 4):y + h + int(h / 4), x - int(w / 4):x + w + int(w / 4)]
 
-            print(len(cropped))
             try:
                 # 이미지 저장, ! type 확인 !
                 cv2.imwrite(result_path + type + "_" + str(num) + ".png", cropped)
