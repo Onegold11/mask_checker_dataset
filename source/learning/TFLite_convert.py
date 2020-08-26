@@ -8,7 +8,7 @@ MODEL_NAME = 'mask_detection_v3_binary.h5'
 # TFLite 파일 저장 경로
 TFLITE_PATH = './models/TFLite/'
 # TFLite 모델 이름
-TFLITE_NAME = 'MobileNet_binary.tflite'
+TFLITE_NAME = 'MobileNet_binary_20_30.tflite'
 
 if __name__ == "__main__":
     # 모델 불러오기

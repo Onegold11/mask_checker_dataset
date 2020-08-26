@@ -12,7 +12,7 @@ MODEL_PATH = './models/'
 # 모델 최종 파일 저장 경로
 MODEL_FINAL_PATH = './models/'
 # 모델 이름
-MODEL_NAME = 'mask_detection_v3_binary_2.h5'
+MODEL_NAME = 'mask_detection_v3_binary_test.h5'
 
 
 def get_data_set():
