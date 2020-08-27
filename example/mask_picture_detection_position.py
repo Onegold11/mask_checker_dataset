@@ -1,6 +1,5 @@
 import os
 import cv2
-import dlib
 import pandas as pd
 
 def make_image_directory(name):
@@ -16,7 +15,7 @@ def detect_faces(dir_path):
     file_list = os.listdir(dir_path)
     result_path = "../image/mask/all_mask/"
     imgNum = 0
-
+    # 마스크 쓴 사람 얼굴 좌표 annotations
     annotations = pd.read_csv(dir_path + file_list[-1])
 
     for image_name in file_list:
@@ -42,8 +41,8 @@ def detect_faces(dir_path):
                 #resize = cv2.resize(cropped, dsize=(64, 64), interpolation=cv2.INTER_AREA)
             except:
                 continue
-
-           # cv2.imshow("image view", resize)
+            # 이미지 확인
+            # cv2.imshow("image view", resize)
 
             imgNum += 1
 
@@ -53,7 +52,6 @@ def detect_faces(dir_path):
                 break
 
             cv2.destroyAllWindows()
-
 
 if __name__ == "__main__":
     get_face()
