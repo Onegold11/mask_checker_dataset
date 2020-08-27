@@ -2,13 +2,13 @@ import tensorflow as tf
 import keras
 
 # 모델 경로
-MODEL_FINAL_PATH = './models/'
+MODEL_FINAL_PATH = '../preprocessing/models/'
 # 모델 이름
-MODEL_NAME = 'mask_detection_v3_binary.h5'
+MODEL_NAME = 'mask_detection.h5'
 # TFLite 파일 저장 경로
-TFLITE_PATH = './models/TFLite/'
+TFLITE_PATH = '../preprocessing/models/'
 # TFLite 모델 이름
-TFLITE_NAME = 'MobileNet_binary_20_30.tflite'
+TFLITE_NAME = 'MobileNet.tflite'
 
 if __name__ == "__main__":
     # 모델 불러오기
