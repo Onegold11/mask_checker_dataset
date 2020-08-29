@@ -1,5 +1,6 @@
-from sklearn.model_selection import train_test_split
-from PIL import Image
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+from keras.applications.mobilenet_v2 import preprocess_input
 import keras
 import numpy as np
 import os
@@ -12,6 +13,9 @@ MODEL_NAME = 'mask_detection_model.h5'
 MASK_IMAGE_PATH = '../image/validation/mask/'
 # 얼굴 이미지 폴더
 FACE_IMAGE_PATH = '../image/validation/no_mask/'
+# 이미지 크기
+image_w = 128
+image_h = 128
 
 
 # 얼굴 이미지 불러오기
@@ -33,13 +37,15 @@ def load_image(path):
     x = []
     for file in files:
         # 이미지 불러오기
-        img = Image.open(path + file)
-        # 이미지 크기 변경
-        img = img.resize((64, 64))
-        # 배열로 변환
-        data = np.asarray(img)
-        data = data.astype("float") / 255
-        x.append(data)
+        img = load_img(path + file, target_size=(image_w, image_h))
+        # 이미지 numpy 배열로 변환
+        img = img_to_array(img)
+        # 이미지 정규화 (-1 ~ 1)
+        # x /= 127.5
+        # x -= 1.
+        img = preprocess_input(img)
+
+        x.append(img)
 
     x = np.asarray(x)
     return files, x
