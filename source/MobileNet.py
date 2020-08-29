@@ -63,7 +63,7 @@ def create_model(X_train, X_test, Y_train, Y_test):
     early_stopping_callback = EarlyStopping(monitor='loss', patience=7, mode='auto')
     # 학습
     history = model.fit(aug.flow(X_train, Y_train, batch_size=32), validation_data=(X_test, Y_test),
-                        batch_size=32, epochs=100,
+                        batch_size=32, epochs=500,
                         callbacks=[early_stopping_callback])
     print("\n Test Accuracy: %.4f" % (model.evaluate(X_test, Y_test)[1]))
 
