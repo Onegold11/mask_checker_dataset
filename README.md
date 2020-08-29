@@ -18,6 +18,12 @@ Architecture
 데이터 셋을 사용해 MobileNetV2을 생성하고 모델을 저장합니다.
 저장된 모델을 Tensorflow Lite의 tflite 모델 파일로 변환하여 안드로이드 기기에 탑재하여 사용합니다.
 
+
+Performance
+-----------
+<img src="./readme_image/02.png" width="400" height="400">
+Accuracy : About 99%
+
 Data Source
 -----------
 + https://www.kaggle.com/wobotintelligence/face-mask-detection-dataset/data?select=train.csv
@@ -31,6 +37,7 @@ Using Models
 
 Required Version
 -----------
++ Python 3.7
 + Tensorflow 2.2.0: https://github.com/tensorflow/tensorflow
 + Keras 2.4.3: https://github.com/keras-team/keras
 + scikit-learn 0.23.2: https://github.com/scikit-learn/scikit-learn
