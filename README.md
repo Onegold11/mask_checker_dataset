@@ -8,6 +8,16 @@ Intro
 
 [MaskChecker_Android]: https://github.com/Onegold11/MaskChecker_Android
 
+Architecture
+------------
+<img src="./readme_image/00.png" width="600" height="200">
+
+<img src="./readme_image/01.png" width="600" height="200">
+
+이미지 데이터를 numpy를 사용해 전처리 후 데이터 셋으로 변환합니다.
+데이터 셋을 사용해 MobileNetV2을 생성하고 모델을 저장합니다.
+저장된 모델을 Tensorflow Lite의 tflite 모델 파일로 변환하여 안드로이드 기기에 탑재하여 사용합니다.
+
 Data Source
 -----------
 + https://www.kaggle.com/wobotintelligence/face-mask-detection-dataset/data?select=train.csv
