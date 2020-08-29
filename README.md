@@ -1,5 +1,6 @@
 Mask checker dataset
 ====================
+![license badge](https://img.shields.io/github/license/Onegold11/mask_checker_dataset)
 
 Intro
 -----
@@ -12,10 +13,10 @@ Data Source
 + https://www.kaggle.com/wobotintelligence/face-mask-detection-dataset/data?select=train.csv
 + https://www.kaggle.com/atulanandjha/lfwpeople?select=lfw-funneled.tgz
 + https://public.roboflow.ai/object-detection/mask-wearing
++ https://www.pyimagesearch.com/2020/05/04/covid-19-face-mask-detector-with-opencv-keras-tensorflow-and-deep-learning/
 
 Using Models
 ------------
-+ VGG16
 + MobileNetV2
 
 Required Version
@@ -29,19 +30,29 @@ Required Version
 
 Contents
 --------
-+ example
-  - 테스트 코드 모음
 + image
   - 전처리 전 이미지 모음
   - mask : 마스크 이미지 모음
   - no_mask : 얼굴 이미지 모음
   - validation : 검증용 이미지 모음
-+ result
-  - 전처리 후 이미지 모음
 + source
   - 소스 코드 모음
-  - learning : 모델 학습 소스 코드 몽므
+  - dataset : 이미지 데이터셋
+  - learning : 모델 학습 소스 코드 모음
+    - models : 학습이 완료된 모델
   - preprocessing : 전처리 소스 코드 모음
 
-Contributor
------------
+Manual
+------
++ mask_image_set.py
+  + 이미지를 이미지 데이터셋으로 변한
++ MobileNet.py
+  + 이미지 데이터셋을 사용해 MobileNetV2 모델을 생성
++ TFLite_convert.py
+  + MobileNetV2 모델을 tflite 모델 파일로 변환
+
+Q&A
+---
+Onegold11 : ujini1129@gmail.com
+
+yang20202 : yang202@ajou.ac.kr
