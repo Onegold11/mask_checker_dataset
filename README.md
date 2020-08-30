@@ -4,6 +4,10 @@ Mask checker dataset
 
 Intro
 -----
+2020년 제14회 공개SW 개발자 대회를 위해 제작되었습니다.
+
+개발 기간: 2020.07.16 ~ 2020.09.03
+
 [MaskChecker][MaskChecker_Android] 앱에 사용할 데이터셋과 모델를 위한 저장소입니다.
 
 [MaskChecker_Android]: https://github.com/Onegold11/MaskChecker_Android
@@ -22,7 +26,7 @@ Architecture
 Performance
 -----------
 <img src="./readme_image/02.png" width="400" height="400">
-Accuracy : About 99%
+Accuracy : About 99.3%
 
 Data Source
 -----------
@@ -61,6 +65,15 @@ Contents
 
 Manual
 ------
++ 사용 순서
+  + mask_image_set -> MobileNet -> TFLite_convert
+
+
++ 주의 사항
+  + 미리 만들어진 모델 및 데이터 셋은 압축되어 있으므로 해제하고 사용해야 함
+  + 소스 코드 상단에 저장 및 불러오는 데이터에 대한 경로를 설정할 수 있음
+
+
 + mask_image_set.py
   + 이미지를 이미지 데이터셋으로 변한
 + MobileNet.py
